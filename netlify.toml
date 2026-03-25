@@ -1,0 +1,3 @@
+[build]
+  command = "sed -i 's|PLACEHOLDER_API_URL|'\"$API_URL\"'|g' delete-account.html"
+  publish = "."

@@ -383,8 +383,7 @@
 </footer>
 
 <script>
-  const API = 'https://api-production-fdbf.up.railway.app/api/v1';
-  const REDIRECT_URL = 'PLACEHOLDER_REDIRECT_URL'; // Replace with actual URL
+  const API = 'PLACEHOLDER_API_URL';
 
   let accessToken = null;
 
@@ -477,11 +476,6 @@
       }
 
       showStep('step-success');
-
-      // Redirect after 3 seconds
-      setTimeout(() => {
-        window.location.href = REDIRECT_URL;
-      }, 3000);
 
     } catch (err) {
       showError('delete-error', 'Network error. Please check your connection and try again.');
