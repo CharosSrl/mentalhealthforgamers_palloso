@@ -450,6 +450,7 @@
       showStep('step-confirm');
 
     } catch (err) {
+      console.error('Login error:', err);
       showError('login-error', 'Network error. Please check your connection and try again.');
     } finally {
       setLoading('btn-login', 'login-spinner', 'login-label', false);
@@ -478,6 +479,7 @@
       showStep('step-success');
 
     } catch (err) {
+      console.error('Delete error:', err);
       showError('delete-error', 'Network error. Please check your connection and try again.');
     } finally {
       setLoading('btn-delete', 'delete-spinner', 'delete-label', false);
