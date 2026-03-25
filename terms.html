@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — Progredi</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0F0F1A;
+      --surface:   #1A1A2E;
+      --border:    rgba(84,84,88,0.30);
+      --primary:   #7F77DD;
+      --teal:      #5AC8FA;
+      --warning:   #EF9F27;
+      --text:      rgba(235,235,245,0.92);
+      --muted:     rgba(235,235,245,0.45);
+      --subtle:    rgba(235,235,245,0.60);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,15,26,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    header .logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--teal));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    header .brand { font-weight: 700; font-size: 17px; }
+    header .page-title {
+      margin-left: auto;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+    }
+
+    nav a {
+      display: block;
+      padding: 14px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color .2s, border-color .2s;
+    }
+
+    nav a:hover { color: var(--text); }
+    nav a.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .meta .badge {
+      background: rgba(127,119,221,0.15);
+      border: 1px solid rgba(127,119,221,0.30);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: .3px;
+    }
+
+    .meta .date { font-size: 13px; color: var(--muted); margin-left: auto; }
+
+    h1 { font-size: 28px; font-weight: 800; letter-spacing: -.4px; margin-bottom: 6px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 40px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 24px 0 8px;
+    }
+
+    p { color: var(--subtle); margin-bottom: 14px; }
+
+    ul, ol { color: var(--subtle); padding-left: 20px; margin-bottom: 14px; }
+    li { margin-bottom: 6px; }
+
+    strong { color: var(--text); font-weight: 600; }
+
+    .callout {
+      background: rgba(239,159,39,0.08);
+      border: 1px solid rgba(239,159,39,0.25);
+      border-left: 3px solid var(--warning);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 20px 0;
+    }
+
+    .callout p { color: var(--text); margin: 0; font-size: 14px; }
+    .callout strong { color: var(--warning); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 20px;
+      font-size: 14px;
+    }
+
+    th {
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 600;
+      text-align: left;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+    }
+
+    td {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      color: var(--subtle);
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 36px 0;
+    }
+
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 40px;
+    }
+
+    .contact-box h3 { margin-top: 0; }
+    .contact-box a { color: var(--primary); text-decoration: none; }
+    .contact-box a:hover { text-decoration: underline; }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--primary); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🎮</div>
+  <span class="brand">Progredi</span>
+  <span class="page-title">Legal</span>
+</header>
+
+<nav>
+  <a href="terms.html" class="active">Terms of Service</a>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="delete-account.html">Delete Account</a>
+</nav>
+
+<div class="container">
+
+  <div class="meta">
+    <span class="badge">Legal</span>
+    <span style="color:var(--subtle);font-size:14px;">Effective for all users of Progredi</span>
+    <span class="date">Last updated: 25 March 2026</span>
+  </div>
+
+  <h1>Terms of Service</h1>
+  <p>These Terms of Service ("Terms") govern your access to and use of the <strong>Progredi</strong> mobile application operated by <strong>Charos S.r.l.</strong> ("Charos", "we", "us"). By using the App, you agree to these Terms.</p>
+
+  <hr class="divider">
+
+  <h2>1. Eligibility</h2>
+  <p>You must be at least <strong>13 years old</strong> to use the App. By using it, you confirm you meet this requirement. Users aged 13–15 in EU member states where the digital age of consent is 16 must have parental or guardian consent.</p>
+
+  <h2>2. Your Account</h2>
+  <p>To use Progredi, you must create an account. You agree to:</p>
+  <ul>
+    <li>Provide accurate and complete registration information</li>
+    <li>Keep your password confidential and not share access</li>
+    <li>Notify us immediately of any unauthorised access at <strong>charossrl@gmail.com</strong></li>
+    <li>Accept responsibility for all activity under your account</li>
+  </ul>
+  <p>We reserve the right to suspend or terminate accounts that violate these Terms.</p>
+
+  <h2>3. The Service</h2>
+  <p>Progredi is a personal wellness application that helps you track gaming sessions, monitor wellness metrics (mood, sleep, stress, focus, energy), build healthy habits, and receive AI-generated coaching insights. The App is provided for <strong>personal, non-commercial use only</strong>.</p>
+
+  <h2>4. Premium Subscription</h2>
+
+  <h3>4.1 Billing</h3>
+  <p>Premium features require a paid subscription, billed through <strong>Apple App Store</strong> or <strong>Google Play</strong>. The applicable price is displayed before purchase.</p>
+
+  <h3>4.2 Free Trial</h3>
+  <p>If a free trial is offered, unused portions are forfeited upon purchase of a subscription.</p>
+
+  <h3>4.3 Cancellation</h3>
+  <p>Cancel anytime through your App Store or Google Play account settings. Cancellation takes effect at the end of the current billing period. No partial refunds are issued.</p>
+
+  <h3>4.4 Refunds</h3>
+  <p>All refund requests are governed by Apple App Store or Google Play policies. Charos does not process refunds directly.</p>
+
+  <h3>4.5 Price Changes</h3>
+  <p>We may change subscription prices with at least <strong>30 days' notice</strong>. Continued use after the effective date constitutes acceptance.</p>
+
+  <h2>5. Health and Medical Disclaimer</h2>
+
+  <div class="callout">
+    <p><strong>Important:</strong> Progredi is a personal wellness tool. It is not a medical device and does not provide medical or psychological advice. Do not disregard or delay seeking professional medical advice because of anything you read in the App. If you are experiencing a mental health crisis, contact a qualified healthcare professional or emergency services immediately.</p>
+  </div>
+
+  <ul>
+    <li>The App is <strong>not</strong> intended to diagnose, treat, cure, or prevent any condition</li>
+    <li>Insights and scores are for informational and self-reflection purposes only</li>
+    <li>AI-generated content is not reviewed by medical professionals</li>
+  </ul>
+
+  <h2>6. AI Coach Disclaimer</h2>
+  <p>The AI Coach uses <strong>OpenAI's</strong> language model to generate personalised insights. AI-generated content may be inaccurate or incomplete and does not constitute professional advice of any kind. You use AI Coach insights at your own discretion.</p>
+
+  <h2>7. Acceptable Use</h2>
+  <p>You agree not to:</p>
+  <ul>
+    <li>Use the App for any unlawful purpose</li>
+    <li>Attempt to gain unauthorised access to our systems</li>
+    <li>Reverse engineer or decompile the App</li>
+    <li>Create multiple accounts to circumvent restrictions or trial periods</li>
+    <li>Use the App to harass, abuse, or harm any person</li>
+  </ul>
+
+  <h2>8. Intellectual Property</h2>
+  <p>The App, its design, code, and brand (including "Progredi" and "Charos") are owned by Charos S.r.l. and protected by Italian and international intellectual property law. You are granted a limited, non-exclusive, non-transferable licence for personal use only.</p>
+
+  <h2>9. Disclaimer of Warranties</h2>
+  <p>THE APP IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND. WE DO NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, ERROR-FREE, OR SUITABLE FOR YOUR SPECIFIC SITUATION.</p>
+
+  <h2>10. Limitation of Liability</h2>
+  <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, CHAROS S.R.L. SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, OR CONSEQUENTIAL DAMAGES. OUR TOTAL LIABILITY SHALL NOT EXCEED THE AMOUNT YOU PAID IN THE 12 MONTHS PRECEDING THE CLAIM.</p>
+  <p>Nothing herein limits liability for death or personal injury caused by negligence, or for fraud, as required by applicable Italian law.</p>
+
+  <h2>11. Governing Law</h2>
+  <p>These Terms are governed by <strong>Italian law</strong>. The courts of Italy have exclusive jurisdiction, except where mandatory consumer protection law of your country of residence provides otherwise.</p>
+
+  <h2>12. Changes to These Terms</h2>
+  <p>Material changes will be communicated in-app at least <strong>14 days</strong> before taking effect. Continued use after the effective date constitutes acceptance.</p>
+
+  <div class="contact-box">
+    <h3>Contact</h3>
+    <p style="margin:0;color:var(--subtle);">
+      <strong>Charos S.r.l.</strong> — Italy<br>
+      <a href="mailto:charossrl@gmail.com">charossrl@gmail.com</a>
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  &copy; 2026 Charos S.r.l. &nbsp;·&nbsp;
+  <a href="terms.html">Terms</a> &nbsp;·&nbsp;
+  <a href="privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="delete-account.html">Delete Account</a>
+</footer>
+
+</body>
+</html>

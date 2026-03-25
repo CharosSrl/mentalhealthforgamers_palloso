@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Progredi</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0F0F1A;
+      --surface:   #1A1A2E;
+      --border:    rgba(84,84,88,0.30);
+      --primary:   #7F77DD;
+      --teal:      #5AC8FA;
+      --warning:   #EF9F27;
+      --success:   #1D9E75;
+      --text:      rgba(235,235,245,0.92);
+      --muted:     rgba(235,235,245,0.45);
+      --subtle:    rgba(235,235,245,0.60);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,15,26,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    header .logo {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--teal));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+
+    header .brand { font-weight: 700; font-size: 17px; }
+    header .page-title { margin-left: auto; font-size: 13px; color: var(--muted); }
+
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      overflow-x: auto;
+    }
+
+    nav a {
+      display: block;
+      padding: 14px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color .2s, border-color .2s;
+    }
+
+    nav a:hover { color: var(--text); }
+    nav a.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .meta .badge {
+      background: rgba(90,200,250,0.12);
+      border: 1px solid rgba(90,200,250,0.28);
+      color: var(--teal);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .meta .date { font-size: 13px; color: var(--muted); margin-left: auto; }
+
+    h1 { font-size: 28px; font-weight: 800; letter-spacing: -.4px; margin-bottom: 6px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 40px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--teal);
+      margin: 24px 0 8px;
+    }
+
+    p { color: var(--subtle); margin-bottom: 14px; }
+    ul, ol { color: var(--subtle); padding-left: 20px; margin-bottom: 14px; }
+    li { margin-bottom: 6px; }
+    strong { color: var(--text); font-weight: 600; }
+
+    .rights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 16px 0 24px;
+    }
+
+    .right-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .right-card .art {
+      font-size: 11px;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .right-card .title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .right-card .desc { font-size: 12px; color: var(--muted); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 20px;
+      font-size: 14px;
+    }
+
+    th {
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 600;
+      text-align: left;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+    }
+
+    td {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      color: var(--subtle);
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .tag-eu { background: rgba(29,158,117,0.12); color: var(--success); }
+    .tag-us { background: rgba(239,159,39,0.12); color: var(--warning); }
+
+    .callout {
+      background: rgba(29,158,117,0.08);
+      border: 1px solid rgba(29,158,117,0.22);
+      border-left: 3px solid var(--success);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 20px 0;
+    }
+
+    .callout p { color: var(--text); margin: 0; font-size: 14px; }
+
+    .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+    .contact-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-top: 40px;
+    }
+
+    .contact-box h3 { margin-top: 0; color: var(--primary); }
+    .contact-box a { color: var(--primary); text-decoration: none; }
+    .contact-box a:hover { text-decoration: underline; }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--primary); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🎮</div>
+  <span class="brand">Progredi</span>
+  <span class="page-title">Legal</span>
+</header>
+
+<nav>
+  <a href="terms.html">Terms of Service</a>
+  <a href="privacy.html" class="active">Privacy Policy</a>
+  <a href="delete-account.html">Delete Account</a>
+</nav>
+
+<div class="container">
+
+  <div class="meta">
+    <span class="badge">GDPR · CCPA · COPPA</span>
+    <span style="color:var(--subtle);font-size:14px;">Data controller: Charos S.r.l.</span>
+    <span class="date">Last updated: 25 March 2026</span>
+  </div>
+
+  <h1>Privacy Policy</h1>
+  <p>This Privacy Policy explains how <strong>Charos S.r.l.</strong> ("Charos", "we", "us") collects, uses, and protects your personal data when you use <strong>Progredi</strong>. We act as the <strong>data controller</strong> under the EU General Data Protection Regulation (GDPR — Regulation (EU) 2016/679).</p>
+
+  <hr class="divider">
+
+  <h2>1. Who We Are</h2>
+  <p><strong>Charos S.r.l.</strong>, Italy — <a href="mailto:charossrl@gmail.com" style="color:var(--primary);">charossrl@gmail.com</a></p>
+
+  <h2>2. Data We Collect</h2>
+
+  <h3>2.1 Account Data</h3>
+  <p>When you register, we collect:</p>
+  <ul>
+    <li><strong>Email address</strong></li>
+    <li><strong>Username</strong></li>
+    <li><strong>Date of birth</strong> — to verify minimum age eligibility</li>
+    <li><strong>Password</strong> — stored as a secure cryptographic hash; we never see your plain-text password</li>
+    <li><strong>Timezone</strong> — used solely for scheduling check-in reminders</li>
+  </ul>
+  <p><em>Legal basis: performance of a contract (Art. 6(1)(b) GDPR).</em></p>
+
+  <h3>2.2 Wellness and Gaming Session Data</h3>
+  <p>When you complete check-ins, we collect mood, sleep quality, stress, focus, and energy ratings, KSS scores, games played, session duration, time of day, habit streaks, and reward points.</p>
+  <div class="callout">
+    <p>This data is <strong>health-adjacent personal data</strong> under Art. 9 GDPR. By voluntarily entering it, you explicitly consent to its processing (Art. 9(2)(a) GDPR). You may withdraw consent at any time by deleting your account.</p>
+  </div>
+
+  <h3>2.3 Technical Data</h3>
+  <p>Device OS and version, authentication tokens (short-lived JWTs stored in encrypted device storage), and app error logs if crash reporting is enabled.</p>
+  <p><em>Legal basis: legitimate interest in maintaining service security (Art. 6(1)(f) GDPR).</em></p>
+
+  <h3>2.4 Subscription Data</h3>
+  <p>Your subscription status (active/inactive) is received from RevenueCat. We do <strong>not</strong> process or store payment card information — all payments are handled by Apple App Store or Google Play.</p>
+
+  <h2>3. How We Use Your Data</h2>
+
+  <table>
+    <thead>
+      <tr><th>Purpose</th><th>Legal basis</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Creating and managing your account</td><td>Contract (Art. 6(1)(b))</td></tr>
+      <tr><td>Delivering session check-ins and history</td><td>Contract (Art. 6(1)(b))</td></tr>
+      <tr><td>Generating AI Coach insights</td><td>Contract + Consent (Art. 6(1)(b), Art. 9(2)(a))</td></tr>
+      <tr><td>Managing your Premium subscription</td><td>Contract (Art. 6(1)(b))</td></tr>
+      <tr><td>Security monitoring and fraud prevention</td><td>Legitimate interest (Art. 6(1)(f))</td></tr>
+      <tr><td>Complying with legal obligations</td><td>Legal obligation (Art. 6(1)(c))</td></tr>
+    </tbody>
+  </table>
+
+  <p>We do <strong>not</strong> sell your data. We do not use your data for advertising.</p>
+
+  <h2>4. AI Coach and OpenAI</h2>
+  <p>The AI Coach transmits a summary of your session data to <strong>OpenAI, L.L.C.</strong> (USA) to generate personalised insights. OpenAI acts as a data processor under a Data Processing Agreement. Under our agreement, your data is <strong>not used by OpenAI to train its models</strong>.</p>
+
+  <h2>5. Third-Party Processors</h2>
+
+  <table>
+    <thead>
+      <tr><th>Processor</th><th>Purpose</th><th>Location</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Google Firebase</td><td>Authentication and token storage</td><td><span class="tag tag-eu">EU</span> / <span class="tag tag-us">USA</span></td></tr>
+      <tr><td>OpenAI</td><td>AI Coach insight generation</td><td><span class="tag tag-us">USA</span></td></tr>
+      <tr><td>RevenueCat</td><td>Subscription management</td><td><span class="tag tag-us">USA</span></td></tr>
+      <tr><td>AWS (via Supabase)</td><td>Database hosting</td><td><span class="tag tag-us">USA</span></td></tr>
+      <tr><td>Railway</td><td>Application server hosting</td><td><span class="tag tag-us">USA</span></td></tr>
+      <tr><td>Apple App Store / Google Play</td><td>Payment processing</td><td><span class="tag tag-us">USA</span></td></tr>
+    </tbody>
+  </table>
+
+  <p>International transfers to US-based processors are governed by <strong>Standard Contractual Clauses</strong> (Art. 46(2)(c) GDPR) or the EU–US Data Privacy Framework.</p>
+
+  <h2>6. Data Retention</h2>
+  <ul>
+    <li><strong>Account and session data</strong> — retained while your account is active</li>
+    <li><strong>Deleted accounts</strong> — all data permanently erased within <strong>30 days</strong> (Art. 17 GDPR)</li>
+    <li><strong>Authentication logs</strong> — retained up to 90 days for security, then deleted</li>
+  </ul>
+
+  <h2>7. Your Rights</h2>
+
+  <div class="rights-grid">
+    <div class="right-card">
+      <div class="art">Art. 15 GDPR</div>
+      <div class="title">Access</div>
+      <div class="desc">Request a copy of all data we hold about you</div>
+    </div>
+    <div class="right-card">
+      <div class="art">Art. 16 GDPR</div>
+      <div class="title">Rectification</div>
+      <div class="desc">Correct inaccurate or incomplete data</div>
+    </div>
+    <div class="right-card">
+      <div class="art">Art. 17 GDPR</div>
+      <div class="title">Erasure</div>
+      <div class="desc">Delete your account and all associated data</div>
+    </div>
+    <div class="right-card">
+      <div class="art">Art. 18 GDPR</div>
+      <div class="title">Restriction</div>
+      <div class="desc">Restrict processing in certain circumstances</div>
+    </div>
+    <div class="right-card">
+      <div class="art">Art. 20 GDPR</div>
+      <div class="title">Portability</div>
+      <div class="desc">Receive your data in a machine-readable format</div>
+    </div>
+    <div class="right-card">
+      <div class="art">Art. 21 GDPR</div>
+      <div class="title">Objection</div>
+      <div class="desc">Object to processing based on legitimate interest</div>
+    </div>
+  </div>
+
+  <p>To exercise any right, email <strong>charossrl@gmail.com</strong>. We will respond within <strong>30 days</strong>.</p>
+  <p>You may also lodge a complaint with the Italian supervisory authority: <strong>Garante per la Protezione dei Dati Personali</strong> — garanteprivacy.it</p>
+
+  <h2>8. California Residents (CCPA)</h2>
+  <p>If you are a California resident, you have the right to know what data we collect, to delete it, and to opt out of its sale. <strong>We do not sell personal information.</strong> Contact us at charossrl@gmail.com to exercise these rights.</p>
+
+  <h2>9. Children's Privacy</h2>
+  <p>The App is not directed to children under <strong>13</strong>. We do not knowingly collect data from anyone under 13. If we become aware of such data, we will delete it promptly. Users aged 13–15 in the EU must have parental consent. Parents may contact us at charossrl@gmail.com.</p>
+
+  <h2>10. Security</h2>
+  <p>We implement HTTPS/TLS encryption, cryptographically hashed passwords, short-lived JWT tokens stored in encrypted device storage, and server-side access controls. No internet transmission is 100% secure; you use the App at your own risk.</p>
+
+  <h2>11. Changes to This Policy</h2>
+  <p>Material changes will be communicated in-app at least <strong>14 days</strong> before taking effect. Continued use after the effective date constitutes acceptance.</p>
+
+  <div class="contact-box">
+    <h3>Contact & Data Requests</h3>
+    <p style="color:var(--subtle);margin:0;">
+      <strong style="color:var(--text);">Charos S.r.l.</strong> — Italy<br>
+      <a href="mailto:charossrl@gmail.com">charossrl@gmail.com</a><br><br>
+      To request data access, correction, or deletion, email us with the subject line <strong style="color:var(--text);">"GDPR Request"</strong>.
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  &copy; 2026 Charos S.r.l. &nbsp;·&nbsp;
+  <a href="terms.html">Terms</a> &nbsp;·&nbsp;
+  <a href="privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="delete-account.html">Delete Account</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delete Account — Progredi</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0F0F1A;
+      --surface:   #1A1A2E;
+      --surface2:  #242438;
+      --border:    rgba(84,84,88,0.30);
+      --primary:   #7F77DD;
+      --teal:      #5AC8FA;
+      --error:     #E24B4A;
+      --warning:   #EF9F27;
+      --text:      rgba(235,235,245,0.92);
+      --muted:     rgba(235,235,245,0.45);
+      --subtle:    rgba(235,235,245,0.60);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15,15,26,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    header .logo {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--teal));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+
+    header .brand { font-weight: 700; font-size: 17px; }
+    header .page-title { margin-left: auto; font-size: 13px; color: var(--muted); }
+
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      overflow-x: auto;
+    }
+
+    nav a {
+      display: block;
+      padding: 14px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color .2s, border-color .2s;
+    }
+
+    nav a:hover { color: var(--text); }
+    nav a.active { color: var(--error); border-bottom-color: var(--error); }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 28px 28px 20px;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .danger-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(226,75,74,0.12);
+      border: 1px solid rgba(226,75,74,0.25);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 26px;
+    }
+
+    .card-header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .card-header p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .warning-box {
+      margin: 0;
+      padding: 14px 18px;
+      background: rgba(239,159,39,0.07);
+      border-bottom: 1px solid rgba(239,159,39,0.18);
+      font-size: 13px;
+      color: rgba(239,159,39,0.9);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .warning-box .icon { flex-shrink: 0; margin-top: 1px; }
+
+    .card-body { padding: 24px 28px 28px; }
+
+    /* Steps */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step { display: none; }
+    .step.active { display: block; }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 15px;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color .2s;
+      margin-bottom: 16px;
+      -webkit-appearance: none;
+    }
+
+    input:focus { border-color: var(--primary); }
+    input::placeholder { color: var(--muted); }
+
+    .btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity .2s, transform .1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn:active { transform: scale(0.98); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-danger {
+      background: var(--error);
+      color: #fff;
+    }
+
+    .btn-ghost {
+      background: var(--surface2);
+      color: var(--subtle);
+      margin-top: 10px;
+    }
+
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .error-msg {
+      background: rgba(226,75,74,0.10);
+      border: 1px solid rgba(226,75,74,0.25);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--error);
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .error-msg.visible { display: block; }
+
+    /* Confirm step */
+    .confirm-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    .confirm-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--subtle);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .confirm-list li:last-child { border-bottom: none; }
+    .confirm-list .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--error);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    /* Success step */
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(29,158,117,0.12);
+      border: 1px solid rgba(29,158,117,0.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 20px;
+    }
+
+    .success-content { text-align: center; }
+    .success-content h2 { font-size: 20px; margin-bottom: 10px; }
+    .success-content p { color: var(--muted); font-size: 14px; }
+
+    footer {
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--primary); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🎮</div>
+  <span class="brand">Progredi</span>
+  <span class="page-title">Account</span>
+</header>
+
+<nav>
+  <a href="terms.html">Terms of Service</a>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="delete-account.html" class="active">Delete Account</a>
+</nav>
+
+<main>
+  <div class="card">
+
+    <div class="card-header">
+      <div class="danger-icon">🗑️</div>
+      <h1>Delete Your Account</h1>
+      <p>This action is permanent and cannot be undone.</p>
+    </div>
+
+    <div class="warning-box">
+      <span class="icon">⚠️</span>
+      <span>Your subscription will <strong>not</strong> be automatically cancelled. Please cancel it separately in the App Store or Google Play before proceeding.</span>
+    </div>
+
+    <div class="card-body">
+
+      <!-- Step 1: Login -->
+      <div class="step active" id="step-login">
+        <div class="error-msg" id="login-error"></div>
+        <label for="email">Email address</label>
+        <input type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Your password" autocomplete="current-password" />
+        <button class="btn btn-primary" id="btn-login" onclick="handleLogin()">
+          <span class="spinner" id="login-spinner"></span>
+          <span id="login-label">Sign In to Continue</span>
+        </button>
+      </div>
+
+      <!-- Step 2: Confirm -->
+      <div class="step" id="step-confirm">
+        <p style="font-size:14px;color:var(--subtle);margin-bottom:16px;">
+          Deleting your account will permanently remove:
+        </p>
+        <ul class="confirm-list">
+          <li><span class="dot"></span>Your profile and account credentials</li>
+          <li><span class="dot"></span>All gaming session data and check-ins</li>
+          <li><span class="dot"></span>Your mood, sleep, and wellness history</li>
+          <li><span class="dot"></span>Streaks, points, and rewards</li>
+          <li><span class="dot"></span>All AI Coach insights and reports</li>
+        </ul>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:20px;">
+          Data will be fully erased within 30 days in compliance with GDPR Art. 17.
+        </p>
+        <div class="error-msg" id="delete-error"></div>
+        <button class="btn btn-danger" id="btn-delete" onclick="handleDelete()">
+          <span class="spinner" id="delete-spinner"></span>
+          <span id="delete-label">Yes, Delete My Account</span>
+        </button>
+        <button class="btn btn-ghost" onclick="goBack()">Cancel</button>
+      </div>
+
+      <!-- Step 3: Success -->
+      <div class="step" id="step-success">
+        <div class="success-content">
+          <div class="success-icon">✓</div>
+          <h2>Account Deleted</h2>
+          <p>Your account has been successfully deleted. All your data will be permanently erased within 30 days.</p>
+          <p style="margin-top:12px;">Redirecting you shortly…</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2026 Charos S.r.l. &nbsp;·&nbsp;
+  <a href="terms.html">Terms</a> &nbsp;·&nbsp;
+  <a href="privacy.html">Privacy</a> &nbsp;·&nbsp;
+  <a href="mailto:charossrl@gmail.com">Contact</a>
+</footer>
+
+<script>
+  const API = 'https://api-production-fdbf.up.railway.app/api/v1';
+  const REDIRECT_URL = 'PLACEHOLDER_REDIRECT_URL'; // Replace with actual URL
+
+  let accessToken = null;
+
+  function showStep(id) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function setLoading(btnId, spinnerId, labelId, loading) {
+    const btn = document.getElementById(btnId);
+    const spinner = document.getElementById(spinnerId);
+    const label = document.getElementById(labelId);
+    btn.disabled = loading;
+    spinner.style.display = loading ? 'block' : 'none';
+    label.style.opacity = loading ? '0' : '1';
+  }
+
+  function showError(id, message) {
+    const el = document.getElementById(id);
+    el.textContent = message;
+    el.classList.add('visible');
+  }
+
+  function hideError(id) {
+    document.getElementById(id).classList.remove('visible');
+  }
+
+  function goBack() {
+    accessToken = null;
+    hideError('login-error');
+    hideError('delete-error');
+    showStep('step-login');
+  }
+
+  async function handleLogin() {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    hideError('login-error');
+
+    if (!email || !password) {
+      showError('login-error', 'Please enter your email and password.');
+      return;
+    }
+
+    setLoading('btn-login', 'login-spinner', 'login-label', true);
+
+    try {
+      const res = await fetch(`${API}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        const msg = data?.message || 'Incorrect email or password. Please try again.';
+        showError('login-error', msg);
+        return;
+      }
+
+      accessToken = data.accessToken;
+      showStep('step-confirm');
+
+    } catch (err) {
+      showError('login-error', 'Network error. Please check your connection and try again.');
+    } finally {
+      setLoading('btn-login', 'login-spinner', 'login-label', false);
+    }
+  }
+
+  async function handleDelete() {
+    if (!accessToken) { goBack(); return; }
+
+    hideError('delete-error');
+    setLoading('btn-delete', 'delete-spinner', 'delete-label', true);
+
+    try {
+      const res = await fetch(`${API}/users/me`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${accessToken}` },
+      });
+
+      if (!res.ok && res.status !== 204) {
+        const data = await res.json().catch(() => ({}));
+        const msg = data?.message || 'Failed to delete account. Please try again or contact support.';
+        showError('delete-error', msg);
+        return;
+      }
+
+      showStep('step-success');
+
+      // Redirect after 3 seconds
+      setTimeout(() => {
+        window.location.href = REDIRECT_URL;
+      }, 3000);
+
+    } catch (err) {
+      showError('delete-error', 'Network error. Please check your connection and try again.');
+    } finally {
+      setLoading('btn-delete', 'delete-spinner', 'delete-label', false);
+    }
+  }
+
+  // Allow Enter key to submit login
+  document.getElementById('password').addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleLogin();
+  });
+</script>
+
+</body>
+</html>
